@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <sdf version="1.9">
-  <world name="buoyant_pool">
+  <world name="swarm_world">
 
     <physics name="1ms" type="ode">
       <max_step_size>0.001</max_step_size>
@@ -22,6 +22,11 @@
       <shadows>true</shadows>
     </scene>
     
+    <include>
+      <uri>model://ground</uri>
+      <name>ground</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
     
     
     <light name="sun" type="directional">
