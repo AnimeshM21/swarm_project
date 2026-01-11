@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Ground_bot">
+
+  <xacro:include filename="$(find swarm)/model/main_frame.xacro"/>
+  <xacro:bot/>
+
+
+  <xacro:include filename="$(find swarm)/model/wheels.xacro"/>
+  <xacro:wheels/>
+
+</robot>

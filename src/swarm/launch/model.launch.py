@@ -13,12 +13,12 @@ from launch_ros.descriptions import ParameterValue
 
 def generate_launch_description():
 
-    package_name = 'hydrogen'
-    robot_name = 'Hydrogen'
+    package_name = 'swarm'
+    robot_name = 'Ground_bot'
 
     pkg_share = get_package_share_directory(package_name)
     
-    worlds_path = os.path.join(pkg_share, 'worlds')
+    world_path = os.path.join(pkg_share, 'world')
     model_path = os.path.join(pkg_share, 'model')
 
     install_dir = os.path.dirname(pkg_share)
@@ -34,12 +34,12 @@ def generate_launch_description():
     # ---------------- Gazebo resource paths ----------------
     set_ign_resource_path = AppendEnvironmentVariable(
         name='IGN_GAZEBO_RESOURCE_PATH',
-        value=os.pathsep.join([worlds_path, install_dir])
+        value=os.pathsep.join([world_path, install_dir])
     )
 
     set_gz_resource_path = AppendEnvironmentVariable(
         name='GZ_SIM_RESOURCE_PATH',
-        value=os.pathsep.join([worlds_path, install_dir])
+        value=os.pathsep.join([world_path, install_dir])
     )
 
     # ---------------- Robot description ----------------
@@ -51,7 +51,7 @@ def generate_launch_description():
     )
 
     # ---------------- World ----------------
-    world_file = os.path.join(pkg_share, 'worlds', 'buoyant_pool.sdf')
+    world_file = os.path.join(pkg_share, 'world', 'swarm_world.sdf')
 
     gazebo_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -95,33 +95,6 @@ def generate_launch_description():
         output='screen'
     )
 
-    # ---------------- ROS <-> Gazebo Bridge ----------------
-    bridge_params = os.path.join(
-        pkg_share,
-        'parameters',
-        'bridge_params.yaml'
-    )
-
-    ros_gz_bridge = Node(
-        package='ros_gz_bridge',
-        executable='parameter_bridge',
-        name='parameter_bridge',
-        output='screen',
-        arguments=[
-            '--ros-args',
-            '--param', f'config_file:={bridge_params}'
-        ],
-        parameters=[{'use_sim_time': True}]
-    )
-    
-    controller_node = Node(
-    	package='hydrogen',
-    	executable='controller_node',
-    	name='controller_node',
-    	output='screen',
-    	parameters=[{'use_sim_time':True}]
-    )
-
     # ---------------- Launch Description ----------------
     ld = LaunchDescription()
 
@@ -137,9 +110,5 @@ def generate_launch_description():
     ld.add_action(gazebo_launch)
     ld.add_action(robot_state_publisher)
     ld.add_action(spawn_robot)
-    ld.add_action(ros_gz_bridge)
-    ld.add_action(controller_node)
-    
 
     return ld
-
