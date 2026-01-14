@@ -1,0 +1,59 @@
+running egg_info
+creating ../../build/swarm/swarm.egg-info
+writing ../../build/swarm/swarm.egg-info/PKG-INFO
+writing dependency_links to ../../build/swarm/swarm.egg-info/dependency_links.txt
+writing entry points to ../../build/swarm/swarm.egg-info/entry_points.txt
+writing requirements to ../../build/swarm/swarm.egg-info/requires.txt
+writing top-level names to ../../build/swarm/swarm.egg-info/top_level.txt
+writing manifest file '../../build/swarm/swarm.egg-info/SOURCES.txt'
+reading manifest file '../../build/swarm/swarm.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file '../../build/swarm/swarm.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/animesh/Desktop/swarm_project/build/swarm/build
+creating /home/animesh/Desktop/swarm_project/build/swarm/build/lib
+creating /home/animesh/Desktop/swarm_project/build/swarm/build/lib/swarm
+copying swarm/__init__.py -> /home/animesh/Desktop/swarm_project/build/swarm/build/lib/swarm
+running install
+running install_lib
+creating /home/animesh/Desktop/swarm_project/install/swarm/lib/python3.10/site-packages/swarm
+copying /home/animesh/Desktop/swarm_project/build/swarm/build/lib/swarm/__init__.py -> /home/animesh/Desktop/swarm_project/install/swarm/lib/python3.10/site-packages/swarm
+byte-compiling /home/animesh/Desktop/swarm_project/install/swarm/lib/python3.10/site-packages/swarm/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/animesh/Desktop/swarm_project/install/swarm/share/ament_index
+creating /home/animesh/Desktop/swarm_project/install/swarm/share/ament_index/resource_index
+creating /home/animesh/Desktop/swarm_project/install/swarm/share/ament_index/resource_index/packages
+copying resource/swarm -> /home/animesh/Desktop/swarm_project/install/swarm/share/ament_index/resource_index/packages
+copying package.xml -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm
+creating /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/launch
+copying launch/model.launch.py -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/launch
+creating /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/model
+copying model/main_frame.xacro -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/model
+copying model/robot.xacro -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/model
+copying model/robot.gazebo -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/model
+copying model/wheels.xacro -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/model
+creating /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/meshes
+copying meshes/zed2i.stl -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/meshes
+copying meshes/VLP16_base_2.dae -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/meshes
+copying meshes/top_chassis.stl -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/meshes
+copying meshes/VLP16_base_1.dae -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/meshes
+copying meshes/bumper.stl -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/meshes
+copying meshes/VLP16_scan.dae -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/meshes
+copying meshes/wheel.stl -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/meshes
+copying meshes/main_frame.stl -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/meshes
+copying meshes/realsense.stl -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/meshes
+creating /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/world
+copying world/swarm_world.sdf -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/world
+creating /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/world/ground
+copying world/ground/model.config -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/world/ground
+copying world/ground/ground.sdf -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/world/ground
+copying world/ground/thumbnails/4.png -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/world/ground
+copying world/ground/thumbnails/5.png -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/world/ground
+copying world/ground/thumbnails/1.png -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/world/ground
+copying world/ground/thumbnails/2.png -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/world/ground
+copying world/ground/thumbnails/3.png -> /home/animesh/Desktop/swarm_project/install/swarm/share/swarm/world/ground
+running install_egg_info
+Copying ../../build/swarm/swarm.egg-info to /home/animesh/Desktop/swarm_project/install/swarm/lib/python3.10/site-packages/swarm-0.0.0-py3.10.egg-info
+running install_scripts
+writing list of installed files to '/home/animesh/Desktop/swarm_project/build/swarm/install.log'
