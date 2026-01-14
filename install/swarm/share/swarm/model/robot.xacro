@@ -7,5 +7,21 @@
 
   <xacro:include filename="$(find swarm)/model/wheels.xacro"/>
   <xacro:wheels/>
+  
+  <xacro:include filename="cameras.xacro"/>
+  
+
+  <xacro:depth_camera
+    name="front_camera_link"
+    parent="ground_bot_frame"
+    xyz="0.478 0 0.285"
+    rpy="0 0 0"/>
+
+
+  <xacro:depth_camera
+    name="down_camera_link"
+    parent="ground_bot_frame"
+    xyz="0.478 0 0.200"
+    rpy="0 0.5236 0"/>
 
 </robot>

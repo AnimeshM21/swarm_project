@@ -83,7 +83,20 @@
       <box size="0.0078 0.13 0.0192"/>
     </geometry>
   </collision>
+  
+      <collision name="user_rail_collision">
+    <origin xyz="0.272 0 0.245" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.0078 0.13 0.0192"/>
+    </geometry>
+  </collision>
 
+      <collision name="holder_collision">
+    <origin xyz="0.272 0 0.245" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.0078 0.13 0.0192"/>
+    </geometry>
+  </collision>
   
   <visual name="main_frame_visual">
     <geometry>
@@ -146,8 +159,6 @@
         </material>
   </visual>
   
-
-  
   <visual name="lidar_base_visual">
   <origin xyz="0.424 0 0.327" rpy="0 0 0"/>
   <geometry>
@@ -169,6 +180,25 @@
   </geometry>
   </visual>
 
+      <visual name="user_rail_visual">
+  <origin xyz="0.272 0 0.245" rpy="0 0 0"/>
+  <geometry>
+  	<mesh filename="package://swarm/meshes/user_rail.dae" scale="1 1 1"/>
+  </geometry>
+  <material name="black">
+  	<color rgba="0.1 0.1 0.1 1"/>
+  </material>
+  </visual>
+  
+        <visual name="holder_visual">
+  <origin xyz="0.272 0 0" rpy="0 0 0"/>
+  <geometry>
+  	<mesh filename="package://swarm/meshes/holder.stl" scale="1 1 1"/>
+  </geometry>
+  <material name="black">
+  	<color rgba="0.1 0.1 0.1 1"/>
+  </material>
+  </visual>
 
 
 </link>

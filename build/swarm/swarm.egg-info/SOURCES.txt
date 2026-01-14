@@ -13,12 +13,15 @@ launch/model.launch.py
 meshes/VLP16_base_1.dae
 meshes/VLP16_base_2.dae
 meshes/VLP16_scan.dae
-meshes/bumper.stl
+meshes/bumper.dae
+meshes/holder.stl
 meshes/main_frame.stl
 meshes/realsense.stl
 meshes/top_chassis.stl
+meshes/user_rail.dae
 meshes/wheel.stl
 meshes/zed2i.stl
+model/cameras.xacro
 model/main_frame.xacro
 model/robot.gazebo
 model/robot.xacro
