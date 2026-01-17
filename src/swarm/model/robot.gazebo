@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.9"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Ground_bot">
 
   <gazebo>
@@ -33,4 +33,26 @@
     </plugin>
   </gazebo>
 
+<gazebo>
+<plugin name="skid_steer_drive_controler" filename="libgazebo_ros_skid_steer_drive.so">
+  <updateRate>100.0</updateRate>
+  <robotNamespace></robotNamespace>
+  <leftFrontJoint>front_left_wheel_joint</leftFrontJoint>
+  <rightFrontJoint>front_right_wheel_joint</rightFrontJoint>
+  <leftRearJoint>rear_left_wheel_joint</leftRearJoint>
+  <rightRearJoint>rear_right_wheel_joint</rightRearJoint>
+
+  <wheelSeperation> </wheelSeperation>
+  <wheelDiameter> </wheelDiameter>
+
+  <torque>1000</torque>
+
+  <commandTopic>cmd_vel</commandTopic>
+  <odometryTopic>odom</odometryTopic>
+  <odometryFrame>odom</odometryFrame>
+  <robotBaseFrame>ground_bot_frame</robotBaseFrame>
+  <publishWheelTF>true</publishWheelTF>
+  <publishWheelJointState>true</publishWheelJointState>
+
+</plugin>
   </robot>

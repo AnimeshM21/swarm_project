@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.9"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 
@@ -37,6 +37,7 @@
       <child link="${name}"/>
       <origin xyz="${xyz}" rpy="${rpy}"/>
     </joint>
+    
     <gazebo reference="${name}">
       <sensor name="${name}_sensor" type="rgbd_camera">
         <always_on>true</always_on>

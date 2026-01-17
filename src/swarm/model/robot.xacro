@@ -1,27 +1,38 @@
-<?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Ground_bot">
+<?xml version="1.9"?>
+<robot
+  xmlns:xacro="http://www.ros.org/wiki/xacro"
+  name="Ground_bot">
 
+  <!-- Main frame -->
   <xacro:include filename="$(find swarm)/model/main_frame.xacro"/>
   <xacro:bot/>
 
-
+  <!-- Wheels -->
   <xacro:include filename="$(find swarm)/model/wheels.xacro"/>
   <xacro:wheels/>
-  
+
+  <!-- Cameras -->
   <xacro:include filename="cameras.xacro"/>
-  
 
   <xacro:depth_camera
-    name="front_camera_link"
+    name="front_camera"
     parent="ground_bot_frame"
     xyz="0.478 0 0.285"
     rpy="0 0 0"/>
 
-
   <xacro:depth_camera
-    name="down_camera_link"
+    name="down_camera"
     parent="ground_bot_frame"
     xyz="0.478 0 0.200"
     rpy="0 0.5236 0"/>
+
+  <!-- LiDAR -->
+  <xacro:include filename="$(find swarm)/model/lidar.xacro"/>
+
+  <xacro:lidar
+    name="lidar"
+    parent="ground_bot_frame"
+    xyz="0.424 0 0.327"
+    rpy="0 0 0"/>
 
 </robot>

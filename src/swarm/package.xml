@@ -1,10 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.9"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>swarm</name>
   <version>0.0.0</version>
   <description>A Package for learning ROS and Gazebo by implementing it in Swarm Robotics applications.</description>
-  <maintainer email="animeshmishra211@gmail.cm">Animesh Mishra</maintainer>
+  <maintainer email="animeshmishra211@gmail.com">Animesh Mishra</maintainer>
   <license>Apache-2.0</license>
 
   <test_depend>ament_copyright</test_depend>

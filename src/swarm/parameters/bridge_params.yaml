@@ -1,0 +1,57 @@
+- ros_topic_name: /imu
+  gz_topic_name: /imu
+  ros_type_name: sensor_msgs/msg/Imu
+  gz_type_name: ignition.msgs.IMU
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "joint_states"
+  gz_topic_name: "joint_states"
+  ros_type_name: "sensor_msgs/msg/JointState"
+  gz_type_name: "ignition.msgs.Model"
+  direction: "GZ_TO_ROS"
+
+#front camera
+
+- ros_topic_name: "/camera/depth_image_raw/front"
+  gz_topic_name: "/front_camera_link/depth_image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "ignition.msgs.Image"
+  direction: "GZ_TO_ROS"
+
+- ros_topic_name: "/point_cloud_front"
+  gz_topic_name: "/zed_camera_front_link/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "ignition.msgs.PointCloudPacked"
+  direction: "GZ_TO_ROS"
+
+- ros_topic_name: "/camera_info_front"
+  gz_topic_name: "/front_camera_link/camera_info"
+  ros_type_name: "sensor_msgs/msg/CameraInfo"
+  gz_type_name: "ignition.msgs.CameraInfo"
+  direction: "GZ_TO_ROS"
+
+- ros_topic_name: "/camera/RGB_image_raw/front"
+  gz_topic_name: "/front_camera_link/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "ignition.msgs.Image"
+  direction: "GZ_TO_ROS"
+
+#down camera
+
+- ros_topic_name: "/camera/depth_image_raw/down"
+  gz_topic_name: "/down_camera_link/depth_image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "ignition.msgs.Image"
+  direction: "GZ_TO_ROS"
+  
+- ros_topic_name: "/camera/RGB_image_raw/down"
+  gz_topic_name: "/down_camera_link/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "ignition.msgs.Image"
+  direction: "GZ_TO_ROS"
+
+
+
+
+
+
