@@ -17,7 +17,6 @@ def generate_launch_description():
     robot_name = 'Ground_bot'
 
     pkg_share = get_package_share_directory(package_name)
-    
     world_path = os.path.join(pkg_share, 'world')
     model_path = os.path.join(pkg_share, 'model')
 
@@ -95,6 +94,32 @@ def generate_launch_description():
         output='screen'
     )
 
+    # ---------------- ROS <-> Gazebo Bridge ----------------
+    bridge_params = os.path.join(
+        pkg_share,
+        'parameters',
+        'bridge_params.yaml'
+    )
+
+    ros_gz_bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        name='parameter_bridge',
+        output='screen',
+        parameters=[{
+            'config_file': bridge_params,
+            'use_sim_time': True
+        }]
+    )
+    
+    bot_teleop = Node(
+        package='swarm',
+        executable='bot_teleop',
+        name='bot_teleop',
+        output='screen',
+        parameters=[{'use_sim_time':True}]
+    )
+
     # ---------------- Launch Description ----------------
     ld = LaunchDescription()
 
@@ -110,5 +135,7 @@ def generate_launch_description():
     ld.add_action(gazebo_launch)
     ld.add_action(robot_state_publisher)
     ld.add_action(spawn_robot)
+    ld.add_action(ros_gz_bridge)
+    ld.add_action(bot_teleop)
 
     return ld

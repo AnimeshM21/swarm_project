@@ -2,11 +2,17 @@
 <robot
   xmlns:xacro="http://www.ros.org/wiki/xacro"
   name="Ground_bot">
+  
+  <xacro:include filename="$(find swarm)/model/robot.gazebo"/>
 
-  <!-- Main frame -->
-  <xacro:include filename="$(find swarm)/model/main_frame.xacro"/>
-  <xacro:bot/>
+  <!-- Ground Bot -->
+  <xacro:include filename="$(find swarm)/model/ground_bot.xacro"/>
+  <xacro:ground_bot/>
 
+    <!-- Drone 
+  <xacro:include filename="$(find swarm)/model/drone.xacro"/>
+
+-->
   <!-- Wheels -->
   <xacro:include filename="$(find swarm)/model/wheels.xacro"/>
   <xacro:wheels/>
@@ -19,12 +25,6 @@
     parent="ground_bot_frame"
     xyz="0.478 0 0.285"
     rpy="0 0 0"/>
-
-  <xacro:depth_camera
-    name="down_camera"
-    parent="ground_bot_frame"
-    xyz="0.478 0 0.200"
-    rpy="0 0.5236 0"/>
 
   <!-- LiDAR -->
   <xacro:include filename="$(find swarm)/model/lidar.xacro"/>

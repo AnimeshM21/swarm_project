@@ -34,25 +34,24 @@
   </gazebo>
 
 <gazebo>
-<plugin name="skid_steer_drive_controler" filename="libgazebo_ros_skid_steer_drive.so">
-  <updateRate>100.0</updateRate>
-  <robotNamespace></robotNamespace>
-  <leftFrontJoint>front_left_wheel_joint</leftFrontJoint>
-  <rightFrontJoint>front_right_wheel_joint</rightFrontJoint>
-  <leftRearJoint>rear_left_wheel_joint</leftRearJoint>
-  <rightRearJoint>rear_right_wheel_joint</rightRearJoint>
+    <plugin
+      filename="ignition-gazebo-diff-drive-system"
+      name="ignition::gazebo::systems::DiffDrive">
+      
+      <left_joint>front_left_wheel_joint</left_joint>
+      <left_joint>rear_left_wheel_joint</left_joint>
 
-  <wheelSeperation> </wheelSeperation>
-  <wheelDiameter> </wheelDiameter>
+      <right_joint>front_right_wheel_joint</right_joint>
+      <right_joint>rear_right_wheel_joint</right_joint>
 
-  <torque>1000</torque>
-
-  <commandTopic>cmd_vel</commandTopic>
-  <odometryTopic>odom</odometryTopic>
-  <odometryFrame>odom</odometryFrame>
-  <robotBaseFrame>ground_bot_frame</robotBaseFrame>
-  <publishWheelTF>true</publishWheelTF>
-  <publishWheelJointState>true</publishWheelJointState>
-
-</plugin>
+      <wheel_separation>0.5</wheel_separation> 
+      <wheel_radius>0.1</wheel_radius>     
+      <topic>cmd_vel</topic>
+      <odom_topic>odom</odom_topic>
+      <tf_topic>tf</tf_topic>
+      <frame_id>odom</frame_id>
+      <child_frame_id>ground_bot_frame</child_frame_id>
+      <odom_publish_frequency>30</odom_publish_frequency>
+    </plugin>
+  </gazebo>
   </robot>

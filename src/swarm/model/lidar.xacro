@@ -6,7 +6,7 @@
     <link name="${name}">
 
       <visual name="lidar_base_visual_2">
-        <origin xyz="0.424 0 0.327" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <mesh
             filename="package://swarm/meshes/VLP16_base_2.dae"
@@ -15,7 +15,7 @@
       </visual>
 
       <visual name="lidar_base_visual">
-        <origin xyz="0.424 0 0.327" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <mesh
             filename="package://swarm/meshes/VLP16_base_1.dae"
@@ -33,14 +33,14 @@
       </visual>
 
       <collision name="lidar_base_collision">
-        <origin xyz="0.424 0 0.327" rpy="0 0 0"/>
+        <origin xyz="0.212 0 0.164" rpy="0 0 0"/>
         <geometry>
           <box size="0.0078 0.13 0.0192"/>
         </geometry>
       </collision>
 
       <collision name="lidar_base_collision_2">
-        <origin xyz="0.424 0 0.327" rpy="0 0 0"/>
+        <origin xyz="0.212 0 0.164" rpy="0 0 0"/>
         <geometry>
           <mesh size="0.0078 0.13 0.0192"/>
         </geometry>
