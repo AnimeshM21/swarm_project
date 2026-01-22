@@ -19,10 +19,10 @@
     </plugin>
   </gazebo>
 
-    <gazebo>
+<gazebo>
     <plugin
-      name="gz::sim::systems::JointStatePublisher"
-      filename="gz-sim-joint-state-publisher-system">
+      name="ignition::gazebo::systems::JointStatePublisher"
+      filename="libignition-gazebo-joint-state-publisher-system.so">
       <topic>joint_states</topic>
       <update_rate>30.0</update_rate>
       <frame_name>base_link</frame_name>
@@ -50,7 +50,7 @@
       <odom_topic>odom</odom_topic>
       <tf_topic>tf</tf_topic>
       <frame_id>odom</frame_id>
-      <child_frame_id>ground_bot_frame</child_frame_id>
+      <child_frame_id>base_link</child_frame_id>
       <odom_publish_frequency>30</odom_publish_frequency>
     </plugin>
   </gazebo>
