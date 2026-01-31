@@ -1,38 +1,23 @@
-<?xml version="1.9"?>
-<robot
-  xmlns:xacro="http://www.ros.org/wiki/xacro"
-  name="Ground_bot">
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Ground_bot">
   
+  <xacro:arg name="frame_prefix" default=""/>
+
   <xacro:include filename="$(find swarm)/model/robot.gazebo"/>
-
-  <!-- Ground Bot -->
   <xacro:include filename="$(find swarm)/model/ground_bot.xacro"/>
-  <xacro:ground_bot/>
-
-    <!-- Drone 
-  <xacro:include filename="$(find swarm)/model/drone.xacro"/>
-
--->
-  <!-- Wheels -->
   <xacro:include filename="$(find swarm)/model/wheels.xacro"/>
-  <xacro:wheels/>
-
-  <!-- Cameras -->
-  <xacro:include filename="cameras.xacro"/>
-
-  <xacro:depth_camera
-    name="front_camera"
-    parent="ground_bot_frame"
-    xyz="0.478 0 0.285"
-    rpy="0 0 0"/>
-
-  <!-- LiDAR -->
   <xacro:include filename="$(find swarm)/model/lidar.xacro"/>
+  <xacro:include filename="$(find swarm)/model/cameras.xacro"/>
 
-  <xacro:lidar
-    name="lidar"
-    parent="ground_bot_frame"
-    xyz="0.424 0 0.327"
-    rpy="0 0 0"/>
+  <xacro:ground_bot suffix="$(arg frame_prefix)"/>
+  
+  <xacro:wheels suffix="$(arg frame_prefix)"/>
+  
+  <xacro:lidar 
+    name="lidar" 
+    parent="$(arg frame_prefix)ground_bot_frame" 
+    xyz="0.424 0 0.327" 
+    rpy="0 0 0" 
+    suffix="$(arg frame_prefix)"/>
 
 </robot>

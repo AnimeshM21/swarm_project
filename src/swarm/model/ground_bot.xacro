@@ -1,11 +1,11 @@
-<?xml version="1.9"?>
+<?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="ground_bot">
+  <xacro:macro name="ground_bot" params="suffix">
 
-    <link name="base_link"/>
+    <link name="${suffix}base_link"/>
 
-    <link name="ground_bot_frame">
+    <link name="${suffix}ground_bot_frame">
       <inertial>
         <origin xyz="0.0 0.0 -0.25" rpy="0 0 0"/>
         <mass value="40.0"/>
@@ -32,50 +32,9 @@
         </geometry>
       </collision>
 
-      <collision name="frame_collision_1">
-        <origin xyz="0 0 0.185625" rpy="0 0 0"/>
-        <geometry>
-          <box size="0.78992 0.5709 0.12375"/>
-        </geometry>
-      </collision>
-
-            <collision name="top_chassis_collision">
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <geometry>
-          <box size="0.0078 0.13 0.0192"/>
-        </geometry>
-      </collision>
-
-      <collision name="user_rail_collision">
-        <origin xyz="0.272 0 0.245" rpy="0 0 0"/>
-        <geometry>
-          <box size="0.0078 0.13 0.0192"/>
-        </geometry>
-      </collision>
-
       <visual name="main_frame_visual">
         <geometry>
           <mesh filename="package://swarm/meshes/main_frame.stl"/>
-        </geometry>
-        <material name="black">
-          <color rgba="0.1 0.1 0.1 1"/>
-        </material>
-      </visual>
-
-      <visual name="front_bumper_visual">
-        <origin xyz="0.48 0 0.091" rpy="0 0 0"/>
-        <geometry>
-          <mesh filename="package://swarm/meshes/bumper.dae"/>
-        </geometry>
-        <material name="black">
-          <color rgba="0.1 0.1 0.1 1"/>
-        </material>
-      </visual>
-
-      <visual name="rear_bumper_visual">
-        <origin xyz="-0.48 0 0.091" rpy="0 0 3.14159"/>
-        <geometry>
-          <mesh filename="package://swarm/meshes/bumper.dae"/>
         </geometry>
         <material name="black">
           <color rgba="0.1 0.1 0.1 1"/>
@@ -90,27 +49,15 @@
           <color rgba="0 0.5 0.5 1"/>
         </material>
       </visual>
-
-      <visual name="user_rail_visual">
-        <origin xyz="0.272 0 0.245" rpy="0 0 0"/>
-        <geometry>
-          <mesh filename="package://swarm/meshes/user_rail.dae"/>
-        </geometry>
-        <material name="black">
-          <color rgba="0.1 0.1 0.1 1"/>
-        </material>
-      </visual>
-
     </link>
 
-    <joint name="base_link_joint" type="fixed">
-      <parent link="base_link"/>
-      <child link="ground_bot_frame"/>
+    <joint name="${suffix}base_link_joint" type="fixed">
+      <parent link="${suffix}base_link"/>
+      <child link="${suffix}ground_bot_frame"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
 
-
-    <gazebo reference="ground_bot_frame">
+    <gazebo reference="${suffix}ground_bot_frame">
       <sensor name="imu" type="imu">
         <always_on>true</always_on>
         <update_rate>100</update_rate>

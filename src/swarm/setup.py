@@ -47,6 +47,7 @@ setup(
     entry_points={
         'console_scripts': [
              'bot_teleop = swarm.bot_teleop:main',
+             'drone_teleop = swarm.drone_teleop:main',
         ],
     },
 )

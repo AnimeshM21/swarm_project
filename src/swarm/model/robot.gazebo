@@ -1,57 +1,66 @@
-<?xml version="1.9"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Ground_bot">
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <gazebo>
-    <plugin
-      name="ignition::gazebo::systems::Imu"
-      filename="ignition-gazebo-imu-system">
-      <topic>imu</topic>
-    </plugin>
-  </gazebo>
+  <xacro:macro name="robot_gazebo" params="suffix">
 
-  <gazebo>
-    <plugin
-      name="ignition::gazebo::systems::Sensors"
-      filename="ignition-gazebo-sensors-system">
-      <render_engine>ogre2</render_engine>
-      <min_depth>0.1</min_depth>
-      <max_depth>100.0</max_depth>
-    </plugin>
-  </gazebo>
+    <gazebo>
+      <plugin
+        name="ignition::gazebo::systems::Imu"
+        filename="ignition-gazebo-imu-system">
+        <topic>imu</topic>
+      </plugin>
+    </gazebo>
 
-<gazebo>
-    <plugin
-      name="ignition::gazebo::systems::JointStatePublisher"
-      filename="libignition-gazebo-joint-state-publisher-system.so">
-      <topic>joint_states</topic>
-      <update_rate>30.0</update_rate>
-      <frame_name>base_link</frame_name>
-      <joint_name>front_left_wheel_joint</joint_name>
-      <joint_name>front_right_wheel_joint</joint_name>
-      <joint_name>rear_left_wheel_joint</joint_name>
-      <joint_name>rear_right_wheel_joint</joint_name>
-    </plugin>
-  </gazebo>
+    <gazebo>
+      <plugin
+        name="ignition::gazebo::systems::Sensors"
+        filename="ignition-gazebo-sensors-system">
+        <render_engine>ogre2</render_engine>
+        <min_depth>0.1</min_depth>
+        <max_depth>100.0</max_depth>
+      </plugin>
+    </gazebo>
 
-<gazebo>
-    <plugin
-      filename="ignition-gazebo-diff-drive-system"
-      name="ignition::gazebo::systems::DiffDrive">
-      
-      <left_joint>front_left_wheel_joint</left_joint>
-      <left_joint>rear_left_wheel_joint</left_joint>
+    <gazebo>
+      <plugin
+        name="ignition::gazebo::systems::JointStatePublisher"
+        filename="libignition-gazebo-joint-state-publisher-system.so">
+        <topic>joint_states</topic>
+        <update_rate>30.0</update_rate>
+        
+        <frame_name>${suffix}base_link</frame_name>
+        
+        <joint_name>${suffix}front_left_wheel_joint</joint_name>
+        <joint_name>${suffix}front_right_wheel_joint</joint_name>
+        <joint_name>${suffix}rear_left_wheel_joint</joint_name>
+        <joint_name>${suffix}rear_right_wheel_joint</joint_name>
+      </plugin>
+    </gazebo>
 
-      <right_joint>front_right_wheel_joint</right_joint>
-      <right_joint>rear_right_wheel_joint</right_joint>
+    <gazebo>
+      <plugin
+        filename="ignition-gazebo-diff-drive-system"
+        name="ignition::gazebo::systems::DiffDrive">
+        
+        <left_joint>${suffix}front_left_wheel_joint</left_joint>
+        <left_joint>${suffix}rear_left_wheel_joint</left_joint>
 
-      <wheel_separation>0.5</wheel_separation> 
-      <wheel_radius>0.1</wheel_radius>     
-      <topic>cmd_vel</topic>
-      <odom_topic>odom</odom_topic>
-      <tf_topic>tf</tf_topic>
-      <frame_id>odom</frame_id>
-      <child_frame_id>base_link</child_frame_id>
-      <odom_publish_frequency>30</odom_publish_frequency>
-    </plugin>
-  </gazebo>
-  </robot>
+        <right_joint>${suffix}front_right_wheel_joint</right_joint>
+        <right_joint>${suffix}rear_right_wheel_joint</right_joint>
+
+        <wheel_separation>0.5</wheel_separation> 
+        <wheel_radius>0.1</wheel_radius>     
+        
+        <topic>cmd_vel</topic>
+        <odom_topic>odometry</odom_topic> <tf_topic>tf</tf_topic>
+        
+        <frame_id>${suffix}odom</frame_id>
+        <child_frame_id>${suffix}base_link</child_frame_id>
+        
+        <odom_publish_frequency>30</odom_publish_frequency>
+      </plugin>
+    </gazebo>
+
+  </xacro:macro>
+
+</robot>

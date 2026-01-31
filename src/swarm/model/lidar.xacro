@@ -1,9 +1,9 @@
-<?xml version="1.9"?>
+<?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="lidar" params="name parent xyz rpy">
+  <xacro:macro name="lidar" params="name parent xyz rpy suffix">
 
-    <link name="${name}">
+    <link name="${suffix}${name}">
 
       <visual name="lidar_base_visual_2">
         <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -42,7 +42,7 @@
       <collision name="lidar_base_collision_2">
         <origin xyz="0.212 0 0.164" rpy="0 0 0"/>
         <geometry>
-          <mesh size="0.0078 0.13 0.0192"/>
+          <box size="0.0078 0.13 0.0192"/> 
         </geometry>
       </collision>
 
@@ -54,19 +54,21 @@
 
     </link>
 
-    <joint name="${name}_joint" type="fixed">
+    <joint name="${suffix}${name}_joint" type="fixed">
       <parent link="${parent}"/>
-      <child link="${name}"/>
+      <child link="${suffix}${name}"/>
       <origin xyz="${xyz}" rpy="${rpy}"/>
     </joint>
 
-    <gazebo reference="${name}">
-      <sensor name="${name}_lidar" type="gpu_lidar">
+    <gazebo reference="${suffix}${name}">
+      <sensor name="${suffix}${name}_lidar" type="gpu_lidar">
         <always_on>true</always_on>
         <update_rate>30</update_rate>
         <visualize>true</visualize>
-
-        <frame_id>${name}</frame_id>
+        
+        <topic>lidar/points</topic> 
+        
+        <frame_id>${suffix}${name}</frame_id>
 
         <lidar>
           <scan>
