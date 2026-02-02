@@ -11,8 +11,8 @@ This project aims to build a fully functional Gazebo simulation implementing a s
 
 Currently, only the Ground Bot is deployed, and the communication architecture is being developed before integrating the other two robot types. The setup will replicate a **leaderless swarm** in a **communication-constrained environment**, where appropriate job scheduling algorithms select the respective type of bot from the three based on the type of task.
 
-![5_bot_swarm](./images/multi_bot.jpg)
-![System Architecture](./images/architecture.png)
+![5_bot_swarm](./images/multi_bot.png)
+
 
 
 This project utilizes:
