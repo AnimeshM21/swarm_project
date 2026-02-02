@@ -31,7 +31,7 @@ Ensure that ROS 2 Humble and Gazebo Fortress are correctly installed and sourced
 
 1.  **Clone the repository**:
     ```bash
-    git clone [<repository_url>](https://github.com/AnimeshM21/swarm_project.git)
+    git clone (https://github.com/AnimeshM21/swarm_project.git)
     cd swarm_project
     ```
 
