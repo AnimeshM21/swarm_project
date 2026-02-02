@@ -11,7 +11,7 @@ This project aims to build a fully functional Gazebo simulation implementing a s
 
 Currently, only the Ground Bot is deployed, and the communication architecture is being developed before integrating the other two robot types. The setup will replicate a **leaderless swarm** in a **communication-constrained environment**, where appropriate job scheduling algorithms select the respective type of bot from the three based on the type of task.
 
-![5_bot_swarm](./images/multi_bot.png)
+![3_bot_swarm](./images/multi_bot.png)
 
 
 
@@ -31,7 +31,7 @@ Ensure that ROS 2 Humble and Gazebo Fortress are correctly installed and sourced
 
 1.  **Clone the repository**:
     ```bash
-    git clone <repository_url>
+    git clone [<repository_url>](https://github.com/AnimeshM21/swarm_project.git)
     cd swarm_project
     ```
 
