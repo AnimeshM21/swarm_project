@@ -1,15 +1,10 @@
-# ==============================================================================
-# SYSTEM & CLOCK
-# ==============================================================================
 - ros_topic_name: /clock
   gz_topic_name: /clock
   ros_type_name: rosgraph_msgs/msg/Clock
   gz_type_name: ignition.msgs.Clock
   direction: GZ_TO_ROS
 
-# ==============================================================================
-# CONTROLS & ODOMETRY
-# ==============================================================================
+#Ground Bot controls and odometry
 - ros_topic_name: /bot_1/cmd_vel
   gz_topic_name: /bot_1/cmd_vel
   ros_type_name: geometry_msgs/msg/Twist
@@ -82,9 +77,7 @@
   gz_type_name: ignition.msgs.Model
   direction: GZ_TO_ROS
 
-# ==============================================================================
-# SENSORS
-# ==============================================================================
+#Ground Bot Sensors
 - ros_topic_name: imu
   gz_topic_name: imu
   ros_type_name: sensor_msgs/msg/Imu
@@ -97,9 +90,7 @@
   gz_type_name: ignition.msgs.PointCloudPacked
   direction: GZ_TO_ROS
 
-# ==============================================================================
-# CAMERA SYSTEM
-# ==============================================================================
+#Ground Bot Camera
 - ros_topic_name: camera/front/image_raw
   gz_topic_name: front_camera_link/image
   ros_type_name: sensor_msgs/msg/Image
@@ -122,4 +113,50 @@
   gz_topic_name: front_camera_link/camera_info
   ros_type_name: sensor_msgs/msg/CameraInfo
   gz_type_name: ignition.msgs.CameraInfo
+  direction: GZ_TO_ROS
+  
+#Drone
+- ros_topic_name: /drone/cmd_vel
+  gz_topic_name: /drone/gazebo/command/twist
+  ros_type_name: geometry_msgs/msg/Twist
+  gz_type_name: ignition.msgs.Twist
+  direction: ROS_TO_GZ
+
+- ros_topic_name: /drone/enable
+  gz_topic_name: /drone/enable
+  ros_type_name: std_msgs/msg/Bool
+  gz_type_name: ignition.msgs.Boolean 
+  direction: ROS_TO_GZ
+
+
+- ros_topic_name: /drone/motor_speed_cmd
+  gz_topic_name: /drone/gazebo/command/motor_speed
+  ros_type_name: actuation_msgs/msg/Actuators 
+  gz_type_name: ignition.msgs.Actuators
+  direction: ROS_TO_GZ
+
+#Drone Motor topics
+
+- ros_topic_name: /drone/motor_speed/0
+  gz_topic_name: /drone/motor_speed/0
+  ros_type_name: std_msgs/msg/Float64
+  gz_type_name: ignition.msgs.Double
+  direction: GZ_TO_ROS
+
+- ros_topic_name: /drone/motor_speed/1
+  gz_topic_name: /drone/motor_speed/1
+  ros_type_name: std_msgs/msg/Float64
+  gz_type_name: ignition.msgs.Double
+  direction: GZ_TO_ROS
+
+- ros_topic_name: /drone/motor_speed/2
+  gz_topic_name: /drone/motor_speed/2
+  ros_type_name: std_msgs/msg/Float64
+  gz_type_name: ignition.msgs.Double
+  direction: GZ_TO_ROS
+
+- ros_topic_name: /drone/motor_speed/3
+  gz_topic_name: /drone/motor_speed/3
+  ros_type_name: std_msgs/msg/Float64
+  gz_type_name: ignition.msgs.Double
   direction: GZ_TO_ROS

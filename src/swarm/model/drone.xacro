@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="drone">
 
-  <xacro:macro name="drone">
+  <xacro:macro name="drone_macro" params="">
 
-    <link name="base_link"/>
+    <link name="drone_base_link"/>
 
-    <link name="drone_frame">
+<link name="drone_frame">
       <inertial>
-        <origin xyz="1.0 0.0 0.0" rpy="0 0 0"/>
-        <mass value="2.0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <mass value="1.503"/>
         <inertia
-          ixx="1.805e-3"
-          ixy="-8.619e-7"
-          ixz="1.764e-3"
-          iyy="1.555e-5"
-          iyz="3.595e-7"
-          izz="3.328e-3"/>
+          ixx="0.02"
+          ixy="0.0"
+          ixz="0.0"
+          iyy="0.02" 
+          iyz="0.0"
+          izz="0.04"/>
       </inertial>
-
+      
       <collision name="drone_frame_collision">
         <origin xyz="-0.00424 0.00014 -0.00595" rpy="0 0 0"/>
         <geometry>
@@ -25,30 +25,22 @@
         </geometry>
       </collision>
 
-      
-
       <visual name="drone_frame_visual">
         <geometry>
           <mesh filename="package://swarm/meshes/hull.dae"/>
         </geometry>
         <material name="black">
-          <color rgba="0.1 0.1 0.1 1"/>
+          <color rgba="1 0.35 0.12 1"/>
         </material>
       </visual>
-
-    
     </link>
 
     <joint name="drone_base_link_joint" type="fixed">
-      <parent link="base_link"/>
+      <parent link="drone_base_link"/>
       <child link="drone_frame"/>
-      <origin xyz="1.0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
 
-
-   
-
   </xacro:macro>
-    <xacro:drone/>
-
+  
 </robot>

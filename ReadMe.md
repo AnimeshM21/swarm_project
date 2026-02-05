@@ -9,11 +9,12 @@ This project aims to build a fully functional Gazebo simulation implementing a s
 - Ground Bots with end-effectors
 - UAVs
 
-Currently, only the Ground Bot is deployed, and the communication architecture is being developed before integrating the other two robot types. The setup will replicate a **leaderless swarm** in a **communication-constrained environment**, where appropriate job scheduling algorithms select the respective type of bot from the three based on the type of task.
-
 ![3_bot_swarm](./images/multi_bot.png)
 
+Currently, the Ground Bots and the  drone is actively deployed, and the communication architecture is being developed before integrating the other robot type. The setup will replicate a **leaderless swarm** in a **communication-constrained environment**, where appropriate job scheduling algorithms select the respective type of bot from the three based on the type of task.
 
+
+![1_drone](./images/bebop_drone.png)
 
 This project utilizes:
 - **ROS 2** for communication
@@ -27,11 +28,13 @@ This project utilizes:
 
 Ensure that ROS 2 Humble and Gazebo Fortress are correctly installed and sourced on your system.
 
+
+
 ## Installation
 
 1.  **Clone the repository**:
     ```bash
-    git clone (https://github.com/AnimeshM21/swarm_project.git)
+    git clone https://github.com/AnimeshM21/swarm_project.git
     cd swarm_project
     ```
 

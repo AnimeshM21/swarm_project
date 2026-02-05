@@ -42,7 +42,7 @@ def generate_launch_description():
     )
 
     # ---------------- Robot description ----------------
-    xacro_file = os.path.join(model_path, 'robot.xacro')
+    xacro_file = os.path.join(model_path, 'robot_drone.xacro')
 
     robot_description = ParameterValue(
         Command(['xacro ', xacro_file]),
