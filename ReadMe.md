@@ -11,7 +11,7 @@ This project aims to build a fully functional Gazebo simulation implementing a s
 
 ![3_bot_swarm](./images/multi_bot.png)
 
-Currently, the Ground Bots and the  drone is actively deployed, and the communication architecture is being developed before integrating the other robot type. The setup will replicate a **leaderless swarm** in a **communication-constrained environment**, where appropriate job scheduling algorithms select the respective type of bot from the three based on the type of task.
+Currently, the Ground Bots and the drone are actively deployed, and the communication architecture is being developed before integrating the other robot type. The setup will replicate a **leaderless swarm** in a **communication-constrained environment**, where appropriate job scheduling algorithms select the respective type of bot from the three based on the type of task.
 
 
 ![1_drone](./images/bebop_drone.png)
