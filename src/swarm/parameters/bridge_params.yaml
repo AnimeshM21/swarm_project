@@ -1,120 +1,117 @@
+# ==========================================
+# GLOBAL TOPICS
+# ==========================================
 - ros_topic_name: /clock
   gz_topic_name: /clock
   ros_type_name: rosgraph_msgs/msg/Clock
   gz_type_name: ignition.msgs.Clock
   direction: GZ_TO_ROS
 
-#Ground Bot controls and odometry
+# ==========================================
+# GROUND BOT 1
+# ==========================================
 - ros_topic_name: /bot_1/cmd_vel
-  gz_topic_name: /bot_1/cmd_vel
-  ros_type_name: geometry_msgs/msg/Twist
-  gz_type_name: ignition.msgs.Twist
-  direction: ROS_TO_GZ
-
-- ros_topic_name: /bot_2/cmd_vel
-  gz_topic_name: /bot_2/cmd_vel
-  ros_type_name: geometry_msgs/msg/Twist
-  gz_type_name: ignition.msgs.Twist
-  direction: ROS_TO_GZ
-
-- ros_topic_name: /bot_3/cmd_vel
-  gz_topic_name: /bot_3/cmd_vel
+  gz_topic_name: /cmd_vel
   ros_type_name: geometry_msgs/msg/Twist
   gz_type_name: ignition.msgs.Twist
   direction: ROS_TO_GZ
 
 - ros_topic_name: /bot_1/odom
-  gz_topic_name: /bot_1/odometry
+  gz_topic_name: /model/ground_bot_1/odometry
   ros_type_name: nav_msgs/msg/Odometry
   gz_type_name: ignition.msgs.Odometry
-  direction: GZ_TO_ROS
-
-- ros_topic_name: /bot_2/odom
-  gz_topic_name: /bot_2/odometry
-  ros_type_name: nav_msgs/msg/Odometry
-  gz_type_name: ignition.msgs.Odometry
-  direction: GZ_TO_ROS
-
-- ros_topic_name: /bot_3/odom
-  gz_topic_name: /bot_3/odometry
-  ros_type_name: nav_msgs/msg/Odometry
-  gz_type_name: ignition.msgs.Odometry
-  direction: GZ_TO_ROS
-
-- ros_topic_name: /bot_1/tf
-  gz_topic_name: /bot_1/pose
-  ros_type_name: tf2_msgs/msg/TFMessage
-  gz_type_name: ignition.msgs.Pose_V
-  direction: GZ_TO_ROS
-
-- ros_topic_name: /bot_2/tf
-  gz_topic_name: /bot_3/pose
-  ros_type_name: tf2_msgs/msg/TFMessage
-  gz_type_name: ignition.msgs.Pose_V
-  direction: GZ_TO_ROS
-
-- ros_topic_name: /bot_3/tf
-  gz_topic_name: /bot_3/pose
-  ros_type_name: tf2_msgs/msg/TFMessage
-  gz_type_name: ignition.msgs.Pose_V
   direction: GZ_TO_ROS
 
 - ros_topic_name: /bot_1/joint_states
-  gz_topic_name: /bot_1/joint_state
+  gz_topic_name: /model/ground_bot_1/joint_states
   ros_type_name: sensor_msgs/msg/JointState
   gz_type_name: ignition.msgs.Model
   direction: GZ_TO_ROS
 
-- ros_topic_name: /bot_2/joint_states
-  gz_topic_name: /bot_2/joint_state
-  ros_type_name: sensor_msgs/msg/JointState
-  gz_type_name: ignition.msgs.Model
-  direction: GZ_TO_ROS
-
-- ros_topic_name: /bot_3/joint_states
-  gz_topic_name: /bot_3/joint_state
-  ros_type_name: sensor_msgs/msg/JointState
-  gz_type_name: ignition.msgs.Model
-  direction: GZ_TO_ROS
-
-#Ground Bot Sensors
-- ros_topic_name: imu
-  gz_topic_name: imu
+- ros_topic_name: /bot_1/imu
+  gz_topic_name: /model/ground_bot_1/imu
   ros_type_name: sensor_msgs/msg/Imu
   gz_type_name: ignition.msgs.IMU
   direction: GZ_TO_ROS
 
-- ros_topic_name: lidar/points
-  gz_topic_name: link/base_link/sensor/lidar_lidar/scan/points
-  ros_type_name: sensor_msgs/msg/PointCloud2
-  gz_type_name: ignition.msgs.PointCloudPacked
-  direction: GZ_TO_ROS
-
-#Ground Bot Camera
-- ros_topic_name: camera/front/image_raw
-  gz_topic_name: front_camera_link/image
+- ros_topic_name: /bot_1/camera/image_raw
+  gz_topic_name: /model/ground_bot_1/depth_camera/image
   ros_type_name: sensor_msgs/msg/Image
   gz_type_name: ignition.msgs.Image
   direction: GZ_TO_ROS
 
-- ros_topic_name: camera/front/depth/image_raw
-  gz_topic_name: front_camera_link/depth_image
-  ros_type_name: sensor_msgs/msg/Image
-  gz_type_name: ignition.msgs.Image
-  direction: GZ_TO_ROS
-
-- ros_topic_name: camera/front/points
-  gz_topic_name: front_camera_link/points
+- ros_topic_name: /bot_1/lidar/points
+  gz_topic_name: /model/ground_bot_1/lidar/scan/points
   ros_type_name: sensor_msgs/msg/PointCloud2
   gz_type_name: ignition.msgs.PointCloudPacked
   direction: GZ_TO_ROS
 
-- ros_topic_name: camera/front/camera_info
-  gz_topic_name: front_camera_link/camera_info
-  ros_type_name: sensor_msgs/msg/CameraInfo
-  gz_type_name: ignition.msgs.CameraInfo
+# ==========================================
+# GROUND BOT 2
+# ==========================================
+- ros_topic_name: /bot_2/cmd_vel
+  gz_topic_name: /model/ground_bot_2/cmd_vel
+  ros_type_name: geometry_msgs/msg/Twist
+  gz_type_name: ignition.msgs.Twist
+  direction: ROS_TO_GZ
+
+- ros_topic_name: /bot_2/odom
+  gz_topic_name: /model/ground_bot_2/odometry
+  ros_type_name: nav_msgs/msg/Odometry
+  gz_type_name: ignition.msgs.Odometry
   direction: GZ_TO_ROS
-  
+
+- ros_topic_name: /bot_2/joint_states
+  gz_topic_name: /model/ground_bot_2/joint_states
+  ros_type_name: sensor_msgs/msg/JointState
+  gz_type_name: ignition.msgs.Model
+  direction: GZ_TO_ROS
+
+- ros_topic_name: /bot_2/camera/image_raw
+  gz_topic_name: /model/ground_bot_1/depth_camera/image
+  ros_type_name: sensor_msgs/msg/Image
+  gz_type_name: ignition.msgs.Image
+  direction: GZ_TO_ROS
+
+- ros_topic_name: /bot_2/lidar/points
+  gz_topic_name: /model/ground_bot_2/lidar/scan/points
+  ros_type_name: sensor_msgs/msg/PointCloud2
+  gz_type_name: ignition.msgs.PointCloudPacked
+  direction: GZ_TO_ROS
+
+# ==========================================
+# GROUND BOT 3
+# ==========================================
+- ros_topic_name: /bot_3/cmd_vel
+  gz_topic_name: /model/ground_bot_3/cmd_vel
+  ros_type_name: geometry_msgs/msg/Twist
+  gz_type_name: ignition.msgs.Twist
+  direction: ROS_TO_GZ
+
+- ros_topic_name: /bot_3/odom
+  gz_topic_name: /model/ground_bot_3/odometry
+  ros_type_name: nav_msgs/msg/Odometry
+  gz_type_name: ignition.msgs.Odometry
+  direction: GZ_TO_ROS
+
+- ros_topic_name: /bot_3/joint_states
+  gz_topic_name: /model/ground_bot_3/joint_states
+  ros_type_name: sensor_msgs/msg/JointState
+  gz_type_name: ignition.msgs.Model
+  direction: GZ_TO_ROS
+
+- ros_topic_name: /bot_3/camera/image_raw
+  gz_topic_name: /model/ground_bot_1/depth_camera/image
+  ros_type_name: sensor_msgs/msg/Image
+  gz_type_name: ignition.msgs.Image
+  direction: GZ_TO_ROS
+
+- ros_topic_name: /bot_3/lidar/points
+  gz_topic_name: /model/ground_bot_3/lidar/scan/points
+  ros_type_name: sensor_msgs/msg/PointCloud2
+  gz_type_name: ignition.msgs.PointCloudPacked
+  direction: GZ_TO_ROS
+
 #Drone
 - ros_topic_name: /drone/cmd_vel
   gz_topic_name: /drone/gazebo/command/twist

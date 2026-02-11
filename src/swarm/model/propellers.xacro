@@ -11,77 +11,70 @@
           iyy="${iyy}" iyz="0"
           izz="${izz}"/>
       </inertial>
-
       <visual>
         <geometry>
           <mesh filename="file://$(find swarm)/meshes/${mesh}" scale="${scale}"/>
         </geometry>
-        <material name="black">
-          <color rgba="0.1 0.1 0.1 1"/>
-        </material>
+        <material name="black"><color rgba="0.1 0.1 0.1 1"/></material>
       </visual>
-
     </link>
   </xacro:macro>
 
   <xacro:macro name="propellers">
-
     <xacro:propeller_link
       name="front_left_propeller"
       mesh="propeller_fl.dae"
       scale="1 1 1"
       mass="0.005"
-      ixx="0.00043333" iyy="0.00043333" izz="0.0008"/>
+      ixx="0.00001" iyy="0.00001" izz="0.00002"/>
 
     <xacro:propeller_link
       name="front_right_propeller"
       mesh="propeller_fr.dae"
       scale="1 1 1"
       mass="0.005"
-      ixx="0.00043333" iyy="0.00043333" izz="0.0008"/>
+      ixx="0.00001" iyy="0.00001" izz="0.00002"/>
 
     <xacro:propeller_link
       name="rear_right_propeller"
       mesh="propeller_rr.dae"
       scale="1 1 1"
       mass="0.005"
-      ixx="0.00043333" iyy="0.00043333" izz="0.0008"/>
+      ixx="0.00001" iyy="0.00001" izz="0.00002"/>
 
     <xacro:propeller_link
       name="rear_left_propeller"
       mesh="propeller_rl.dae"
       scale="1 1 1"
       mass="0.005"
-      ixx="0.00043333" iyy="0.00043333" izz="0.0008"/>
+      ixx="0.00001" iyy="0.00001" izz="0.00002"/>
 
     <joint name="front_right_propeller_joint" type="continuous">
       <parent link="drone_base_link"/>
       <child link="front_right_propeller"/>
-      <origin xyz="0.08456 -0.11435 -0.00501" rpy="0 0 0"/>
+      <origin xyz="0.09 -0.115 -0.005" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
     </joint>
 
     <joint name="front_left_propeller_joint" type="continuous">
       <parent link="drone_base_link"/>
       <child link="front_left_propeller"/>
-      <origin xyz="0.08456 0.11463 -0.00501" rpy="0 0 0"/>
+      <origin xyz="0.09 0.115 -0.005" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
     </joint>
 
     <joint name="rear_right_propeller_joint" type="continuous">
       <parent link="drone_base_link"/>
       <child link="rear_right_propeller"/>
-      <origin xyz="-0.09035 -0.11423 -0.00501" rpy="0 0 0"/>
+      <origin xyz="-0.09 -0.115 -0.005" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
     </joint>
 
     <joint name="rear_left_propeller_joint" type="continuous">
       <parent link="drone_base_link"/>
       <child link="rear_left_propeller"/>
-      <origin xyz="-0.09035 0.11452 -0.00501" rpy="0 0 0"/>
+      <origin xyz="-0.09 0.115 -0.005" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
     </joint>
-
   </xacro:macro>
-
 </robot>

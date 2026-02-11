@@ -10,7 +10,6 @@
   <xacro:include filename="$(find swarm)/model/cameras.xacro"/>
 
   <xacro:ground_bot suffix="$(arg frame_prefix)"/>
-  
   <xacro:wheels suffix="$(arg frame_prefix)"/>
   
   <xacro:lidar 

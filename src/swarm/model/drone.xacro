@@ -19,7 +19,7 @@
       </inertial>
       
       <collision name="drone_frame_collision">
-        <origin xyz="-0.00424 0.00014 -0.00595" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
         <geometry>
           <box size="0.316618 0.330564 0.089582"/>
         </geometry>
