@@ -10,8 +10,9 @@
 # ==========================================
 # GROUND BOT 1
 # ==========================================
+# DiffDrive subscribes to 'cmd_vel' (relative) → Gazebo scopes it to /model/ground_bot_1/cmd_vel
 - ros_topic_name: /bot_1/cmd_vel
-  gz_topic_name: /cmd_vel
+  gz_topic_name: /model/ground_bot_1/cmd_vel
   ros_type_name: geometry_msgs/msg/Twist
   gz_type_name: ignition.msgs.Twist
   direction: ROS_TO_GZ
@@ -34,6 +35,7 @@
   gz_type_name: ignition.msgs.IMU
   direction: GZ_TO_ROS
 
+# Camera sensor topic is 'depth_camera' → Gazebo publishes /model/ground_bot_1/depth_camera/image
 - ros_topic_name: /bot_1/camera/image_raw
   gz_topic_name: /model/ground_bot_1/depth_camera/image
   ros_type_name: sensor_msgs/msg/Image
@@ -67,8 +69,15 @@
   gz_type_name: ignition.msgs.Model
   direction: GZ_TO_ROS
 
+- ros_topic_name: /bot_2/imu
+  gz_topic_name: /model/ground_bot_2/imu
+  ros_type_name: sensor_msgs/msg/Imu
+  gz_type_name: ignition.msgs.IMU
+  direction: GZ_TO_ROS
+
+# Fixed: was incorrectly mapped to ground_bot_1
 - ros_topic_name: /bot_2/camera/image_raw
-  gz_topic_name: /model/ground_bot_1/depth_camera/image
+  gz_topic_name: /model/ground_bot_2/depth_camera/image
   ros_type_name: sensor_msgs/msg/Image
   gz_type_name: ignition.msgs.Image
   direction: GZ_TO_ROS
@@ -100,8 +109,15 @@
   gz_type_name: ignition.msgs.Model
   direction: GZ_TO_ROS
 
+- ros_topic_name: /bot_3/imu
+  gz_topic_name: /model/ground_bot_3/imu
+  ros_type_name: sensor_msgs/msg/Imu
+  gz_type_name: ignition.msgs.IMU
+  direction: GZ_TO_ROS
+
+# Fixed: was incorrectly mapped to ground_bot_1
 - ros_topic_name: /bot_3/camera/image_raw
-  gz_topic_name: /model/ground_bot_1/depth_camera/image
+  gz_topic_name: /model/ground_bot_3/depth_camera/image
   ros_type_name: sensor_msgs/msg/Image
   gz_type_name: ignition.msgs.Image
   direction: GZ_TO_ROS
@@ -112,7 +128,11 @@
   gz_type_name: ignition.msgs.PointCloudPacked
   direction: GZ_TO_ROS
 
-#Drone
+# ==========================================
+# DRONE
+# ==========================================
+# MulticopterVelocityControl subscribes under robotNamespace 'drone':
+#   commandSubTopic 'gazebo/command/twist' → full gz topic: /drone/gazebo/command/twist
 - ros_topic_name: /drone/cmd_vel
   gz_topic_name: /drone/gazebo/command/twist
   ros_type_name: geometry_msgs/msg/Twist
@@ -122,18 +142,16 @@
 - ros_topic_name: /drone/enable
   gz_topic_name: /drone/enable
   ros_type_name: std_msgs/msg/Bool
-  gz_type_name: ignition.msgs.Boolean 
+  gz_type_name: ignition.msgs.Boolean
   direction: ROS_TO_GZ
-
 
 - ros_topic_name: /drone/motor_speed_cmd
   gz_topic_name: /drone/gazebo/command/motor_speed
-  ros_type_name: actuation_msgs/msg/Actuators 
+  ros_type_name: actuation_msgs/msg/Actuators
   gz_type_name: ignition.msgs.Actuators
   direction: ROS_TO_GZ
 
-#Drone Motor topics
-
+# Drone motor telemetry (one topic per rotor, numbered 0-3)
 - ros_topic_name: /drone/motor_speed/0
   gz_topic_name: /drone/motor_speed/0
   ros_type_name: std_msgs/msg/Float64

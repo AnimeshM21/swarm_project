@@ -19,6 +19,13 @@
     rpy="0 0 0" 
     suffix="$(arg frame_prefix)"/>
 
+  <xacro:depth_camera
+    name="depth_camera"
+    parent="$(arg frame_prefix)ground_bot_frame"
+    xyz="0.424 0 0.5"
+    rpy="0 0 0"
+    suffix="$(arg frame_prefix)"/>
+
   <!-- Load ground-bot Gazebo plugins (IMU, Sensors, DiffDrive) -->
   <xacro:ground_bot_gazebo suffix="$(arg frame_prefix)"/>
 
