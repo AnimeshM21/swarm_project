@@ -3,7 +3,7 @@
   
   <xacro:arg name="frame_prefix" default=""/>
 
-  <xacro:include filename="$(find swarm)/model/robot.gazebo"/>
+  <xacro:include filename="$(find swarm)/model/ground_bot.gazebo"/>
   <xacro:include filename="$(find swarm)/model/ground_bot.xacro"/>
   <xacro:include filename="$(find swarm)/model/wheels.xacro"/>
   <xacro:include filename="$(find swarm)/model/lidar.xacro"/>
@@ -18,5 +18,8 @@
     xyz="0.424 0 0.327" 
     rpy="0 0 0" 
     suffix="$(arg frame_prefix)"/>
+
+  <!-- Load ground-bot Gazebo plugins (IMU, Sensors, DiffDrive) -->
+  <xacro:ground_bot_gazebo suffix="$(arg frame_prefix)"/>
 
 </robot>
