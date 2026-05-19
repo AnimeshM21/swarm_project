@@ -18,7 +18,7 @@ Currently, ground bots and drones are actively deployed through a **single unifi
 This project utilises:
 - **ROS 2** for communication
 - **Gazebo Fortress (Ignition)** for simulation
-- **ros_gz_bridge** for bidirectional ROS ↔ Gazebo topic bridging
+
 
 ## Prerequisites
 
@@ -88,26 +88,10 @@ The launch file automatically:
 
 ## Project Structure
 
-```
-swarm_project/
-└── src/swarm/
-    ├── launch/
-    │   └── swarm.launch.py       # Unified launch — all robot types & counts
-    ├── model/                    # Modular robot description files (xacro)
-    │   ├── robot.xacro           # Ground bot top-level
-    │   ├── robot_drone.xacro     # Drone top-level
-    │   ├── ground_bot.xacro      # Ground bot body
-    │   ├── drone.xacro           # Drone body
-    │   ├── ground_bot.gazebo     # Ground bot Gazebo plugins
-    │   ├── drone.gazebo          # Drone Gazebo plugins
-    │   ├── cameras.xacro         # Camera sensor macro
-    │   ├── lidar.xacro           # LiDAR sensor macro
-    │   ├── wheels.xacro          # Wheel geometry macro
-    │   └── propellers.xacro      # Propeller geometry macro
-    ├── swarm/
-    │   └── swarm_teleop.py       # Unified teleop — ground bots + drones
-    ├── world/                    # Gazebo world SDF files
-    └── meshes/                   # 3D mesh assets (STL)
-```
+- **launch/**: Contains Python launch files for different robot configurations as mentioned above.
+- **model/**: Robot description files, which have been made modular based on each aspect of the bot.
+- **world/**: Gazebo world files (SDF), currently only an empty world, actively adding obstacles and relevant features.
+- **parameters/**: Configuration files (e.g., bridge parameters).
+- **meshes/**: 3D models for robots, primarily STL files imported from Fuel.
 
 > **Note on `parameters/`:** Bridge parameters are now generated dynamically at launch time from `swarm.launch.py` and written to a temporary file. The static `bridge_params.yaml` has been removed.

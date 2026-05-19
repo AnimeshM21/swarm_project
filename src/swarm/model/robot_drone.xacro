@@ -1,13 +1,17 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="drone">
-  
+
+  <xacro:arg name="frame_prefix" default=""/>
+  <xacro:arg name="robot_ns" default="drone"/>
+
   <xacro:include filename="$(find swarm)/model/drone.gazebo"/>
   <xacro:include filename="$(find swarm)/model/drone.xacro"/>
   <xacro:include filename="$(find swarm)/model/propellers.xacro"/>
 
-  <xacro:drone_macro />
-  <xacro:propellers/>
+  <xacro:drone_macro suffix="$(arg frame_prefix)"/>
+  <xacro:propellers suffix="$(arg frame_prefix)"/>
 
-  <xacro:drone_gazebo suffix=""/>
+  <!-- robot_ns controls Gazebo topic namespace; suffix controls link/joint names -->
+  <xacro:drone_gazebo suffix="$(arg frame_prefix)" robot_ns="$(arg robot_ns)"/>
 
 </robot>
