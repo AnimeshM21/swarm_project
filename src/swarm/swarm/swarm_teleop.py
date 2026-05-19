@@ -45,6 +45,11 @@ class SwarmTeleopNode(Node):
         # It is set to False by swarm.launch.py so timers fire on wall clock.
         self.num_bots   = self.get_parameter('num_bots').value
         self.num_drones = self.get_parameter('num_drones').value
+
+        # If parameters are at default (3 and 0), try to auto-discover active agents from the ROS graph
+        if self.num_bots == 3 and self.num_drones == 0:
+            self.auto_discover_agents()
+
         self.total      = self.num_bots + self.num_drones
 
         if self.total == 0:
@@ -95,6 +100,52 @@ class SwarmTeleopNode(Node):
         # Arm all drones after a short delay so subscribers are ready
         if self.num_drones > 0:
             self._arm_timer = self.create_timer(1.5, self._arm_all_drones)
+
+    def auto_discover_agents(self):
+        import time
+        discovered_bots = 0
+        discovered_drones = 0
+        self.get_logger().info('Scanning ROS graph for active agents...')
+        
+        for _ in range(10):
+            topics = self.get_topic_names_and_types()
+            bot_ids = []
+            drone_ids = []
+            has_single_drone = False
+            
+            for topic_name, _ in topics:
+                if topic_name.startswith('/bot_') and topic_name.endswith('/cmd_vel'):
+                    try:
+                        parts = topic_name.split('/')
+                        bot_num = int(parts[1].split('_')[1])
+                        bot_ids.append(bot_num)
+                    except (ValueError, IndexError):
+                        pass
+                elif topic_name == '/drone/cmd_vel':
+                    has_single_drone = True
+                elif topic_name.startswith('/drone_') and topic_name.endswith('/cmd_vel'):
+                    try:
+                        parts = topic_name.split('/')
+                        drone_num = int(parts[1].split('_')[1])
+                        drone_ids.append(drone_num)
+                    except (ValueError, IndexError):
+                        pass
+            
+            if bot_ids or drone_ids or has_single_drone:
+                discovered_bots = max(bot_ids) if bot_ids else 0
+                if drone_ids:
+                    discovered_drones = max(drone_ids)
+                elif has_single_drone:
+                    discovered_drones = 1
+                break
+            time.sleep(0.1)
+            
+        if discovered_bots > 0 or discovered_drones > 0:
+            self.get_logger().info(f'Auto-discovered: {discovered_bots} bots, {discovered_drones} drones')
+            self.num_bots = discovered_bots
+            self.num_drones = discovered_drones
+        else:
+            self.get_logger().info('No active agents found in ROS graph, using defaults.')
 
     # ── Publishing ───────────────────────────────────────────
 
