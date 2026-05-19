@@ -41,8 +41,8 @@ class SwarmTeleopNode(Node):
         # ── Parameters ───────────────────────────────────────
         self.declare_parameter('num_bots', 3)
         self.declare_parameter('num_drones', 0)
-        # Always wall-clock: teleop timers must fire even when sim is paused.
-        self.declare_parameter('use_sim_time', False)
+        # use_sim_time is a built-in rclpy parameter (always pre-declared).
+        # It is set to False by swarm.launch.py so timers fire on wall clock.
         self.num_bots   = self.get_parameter('num_bots').value
         self.num_drones = self.get_parameter('num_drones').value
         self.total      = self.num_bots + self.num_drones
