@@ -90,7 +90,7 @@
         <motorConstant>8.54858e-06</motorConstant>
         <momentConstant>0.016</momentConstant>
         <commandSubTopic>gazebo/command/motor_speed</commandSubTopic>
-        <motor_number>0</motor_number>
+        <motorNumber>0</motorNumber>
         <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
         <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
         <motorSpeedPubTopic>motor_speed/0</motorSpeedPubTopic>
@@ -112,7 +112,7 @@
         <motorConstant>8.54858e-06</motorConstant>
         <momentConstant>0.016</momentConstant>
         <commandSubTopic>gazebo/command/motor_speed</commandSubTopic>
-        <motor_number>1</motor_number>
+        <motorNumber>1</motorNumber>
         <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
         <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
         <motorSpeedPubTopic>motor_speed/1</motorSpeedPubTopic>
@@ -134,7 +134,7 @@
         <motorConstant>8.54858e-06</motorConstant>
         <momentConstant>0.016</momentConstant>
         <commandSubTopic>gazebo/command/motor_speed</commandSubTopic>
-        <motor_number>2</motor_number>
+        <motorNumber>2</motorNumber>
         <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
         <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
         <motorSpeedPubTopic>motor_speed/2</motorSpeedPubTopic>
@@ -156,7 +156,7 @@
         <motorConstant>8.54858e-06</motorConstant>
         <momentConstant>0.016</momentConstant>
         <commandSubTopic>gazebo/command/motor_speed</commandSubTopic>
-        <motor_number>3</motor_number>
+        <motorNumber>3</motorNumber>
         <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
         <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
         <motorSpeedPubTopic>motor_speed/3</motorSpeedPubTopic>
