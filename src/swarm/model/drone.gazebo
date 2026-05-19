@@ -3,21 +3,8 @@
 
   <xacro:macro name="drone_gazebo" params="suffix robot_ns">
 
-    <!-- ─── Common: IMU system plugin ─────────────────────────────────────── -->
-    <gazebo>
-      <plugin name="ignition::gazebo::systems::Imu"
-              filename="ignition-gazebo-imu-system">
-        <topic>${suffix}imu</topic>
-      </plugin>
-    </gazebo>
-
-    <!-- ─── Common: Sensor rendering system ───────────────────────────────── -->
-    <gazebo>
-      <plugin filename="ignition-gazebo-sensors-system"
-              name="ignition::gazebo::systems::Sensors">
-        <render_engine>ogre2</render_engine>
-      </plugin>
-    </gazebo>
+    <!-- IMU and Sensors system plugins are loaded at world level in
+         swarm_world.sdf — do NOT duplicate them here per-model. -->
 
     <!-- ─── Drone: High-level velocity controller ──────────────────────────── -->
     <!--
