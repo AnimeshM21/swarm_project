@@ -26,10 +26,9 @@
       wheels.xacro.  Without the suffix these joints cannot be found when
       multiple bots are spawned under a namespace in swarm_bot.launch.py.
 
-      NOTE: The Gazebo-side topic names below (cmd_vel, odom, tf) are relative
-      to the model scope.  The ROS<->Gazebo bridge in bridge_params.yaml maps
-      the corresponding /bot_N/* ROS topics to these.  If you regenerate the
-      bridge YAML dynamically in the future, update those mappings to match.
+      NOTE: topic/odom_topic/tf_topic are left at their defaults so the plugin
+      uses model-scoped paths (/model/ground_bot_N/cmd_vel, etc.).
+      The ros_gz_bridge in swarm.launch.py maps /bot_N/cmd_vel → that path.
     -->
     <gazebo>
       <plugin filename="ignition-gazebo-diff-drive-system"
@@ -42,10 +41,9 @@
         <wheel_separation>0.5</wheel_separation>
         <wheel_radius>0.1</wheel_radius>
 
-        <topic>cmd_vel</topic>
-        <odom_topic>odom</odom_topic>
-        <tf_topic>tf</tf_topic>
-        <!-- Namespaced so each bot's TF tree is isolated (bot_1/odom, bot_2/odom …) -->
+        <!-- topic/odom_topic/tf_topic left at defaults so the plugin
+             subscribes to /model/ground_bot_N/cmd_vel, which matches
+             the gz_topic_name in the swarm.launch.py bridge config. -->
         <frame_id>${suffix}odom</frame_id>
         <child_frame_id>${suffix}base_link</child_frame_id>
         <odom_publish_frequency>30</odom_publish_frequency>
