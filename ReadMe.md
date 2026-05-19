@@ -69,11 +69,20 @@ ros2 launch swarm swarm.launch.py num_bots:=1
 The launch file automatically:
 - Spawns all robots at collision-free random positions
 - Generates and applies the correct ROS ↔ Gazebo bridge configuration
-- Starts the `swarm_teleop` node pre-configured for the chosen fleet
+- Starts the `swarm_teleop` node
 
 ### Teleop Controls
 
-`swarm_teleop` is launched automatically. Controls are context-aware — they adapt to whether the active agent is a ground bot or a drone.
+Although `swarm_teleop` is launched as part of the launch process, it is best interacted with in a **separate terminal** to capture keyboard inputs properly. 
+
+Simply source and run:
+```bash
+ros2 run swarm swarm_teleop
+```
+
+The teleop node features **dynamic ROS graph auto-discovery**. It will automatically scan for active topics at startup, detect the number of ground bots (`/bot_N/cmd_vel`) and drones (`/drone_N/cmd_vel`), and scale the controls accordingly.
+
+Controls are context-aware — they adapt to whether the active agent is a ground bot or a drone:
 
 | Key | Ground Bot | Drone |
 |-----|-----------|-------|
@@ -88,10 +97,9 @@ The launch file automatically:
 
 ## Project Structure
 
-- **launch/**: Contains Python launch files for different robot configurations as mentioned above.
-- **model/**: Robot description files, which have been made modular based on each aspect of the bot.
-- **world/**: Gazebo world files (SDF), currently only an empty world, actively adding obstacles and relevant features.
-- **parameters/**: Configuration files (e.g., bridge parameters).
-- **meshes/**: 3D models for robots, primarily STL files imported from Fuel.
+- **launch/**: Contains the unified Python launch file.
+- **model/**: Robot description files (XACRO/SDF), made modular based on each aspect of the bot.
+- **world/**: Gazebo world files (SDF), including the `swarm_world.sdf` layout.
+- **meshes/**: 3D models for robots, primarily STL files.
 
-> **Note on `parameters/`:** Bridge parameters are now generated dynamically at launch time from `swarm.launch.py` and written to a temporary file. The static `bridge_params.yaml` has been removed.
+> **Note on Sensors:** Due to heavy rendering requirements of multiple lidar/depth-cameras with Ogre2 on integrated graphics, sensor system plugins are disabled by default in `swarm_world.sdf` and `robot.xacro` to guarantee high simulation performance/stability. They can be re-enabled by uncommenting the plugin blocks.
