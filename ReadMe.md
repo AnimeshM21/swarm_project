@@ -5,77 +5,109 @@ A curiosity-driven project for building digital twins of a heterogeneous swarm o
 ## Overview
 
 This project aims to build a fully functional Gazebo simulation implementing a swarm of heterogeneous robots, including:
-- Ground Bots
-- Ground Bots with end-effectors
-- UAVs
+- Ground Bots (differential drive)
+- UAVs / Drones (quadrotor)
+- Ground Bots with end-effectors *(planned)*
 
 ![3_bot_swarm](./images/multi_bot.png)
 
-Currently, the Ground Bots and the drone are actively deployed, and the communication architecture is being developed before integrating the other robot type. The setup will replicate a **leaderless swarm** in a **communication-constrained environment**, where appropriate job scheduling algorithms select the respective type of bot from the three based on the type of task.
-
+Currently, ground bots and drones are actively deployed through a **single unified launch file** that supports any mix of robot types. The setup replicates a **leaderless swarm** in a **communication-constrained environment**, where appropriate job scheduling algorithms select the respective type of bot based on the task at hand.
 
 ![1_drone](./images/bebop_drone.png)
 
-This project utilizes:
+This project utilises:
 - **ROS 2** for communication
-- **Gazebo** for simulation
+- **Gazebo Fortress (Ignition)** for simulation
+- **ros_gz_bridge** for bidirectional ROS ↔ Gazebo topic bridging
 
 ## Prerequisites
 
 - **ROS 2**: Humble
-- **Gazebo**: Fortress
-- **ros_gz**: ROS 2 <-> Gazebo bridge
+- **Gazebo**: Fortress (Ignition)
+- **ros_gz**: ROS 2 ↔ Gazebo bridge
 
 Ensure that ROS 2 Humble and Gazebo Fortress are correctly installed and sourced on your system.
 
-
-
 ## Installation
 
-1.  **Clone the repository**:
+1. **Clone the repository**:
     ```bash
     git clone https://github.com/AnimeshM21/swarm_project.git
     cd swarm_project
     ```
 
-2.  **Build the workspace**:
+2. **Build the workspace**:
     ```bash
     colcon build
     ```
 
-3.  **Source the setup file**:
+3. **Source the setup file**:
     ```bash
     source install/setup.bash
     ```
 
 ## Usage
 
-This package provides several launch files to simulate different robot configurations in Gazebo.
+The entire project is driven by a **single unified launch file** — `swarm.launch.py` — and a **single teleop node** — `swarm_teleop`. Both support any combination of ground bots and drones via launch arguments.
 
-### 1. Launch a Drone
-Spawns a single drone in the simulation.
+### Launch the Swarm
+
 ```bash
-ros2 launch swarm drone.launch.py
+# Default: 3 ground bots, 0 drones
+ros2 launch swarm swarm.launch.py
+
+# Custom mix
+ros2 launch swarm swarm.launch.py num_bots:=2 num_drones:=1
+
+# Drone only
+ros2 launch swarm swarm.launch.py num_bots:=0 num_drones:=1
+
+# Single ground bot
+ros2 launch swarm swarm.launch.py num_bots:=1
 ```
 
-### 2. Launch a Single Ground Bot
-Spawns a single ground robot.
-```bash
-ros2 launch swarm single_bot.launch.py
-```
+The launch file automatically:
+- Spawns all robots at collision-free random positions
+- Generates and applies the correct ROS ↔ Gazebo bridge configuration
+- Starts the `swarm_teleop` node pre-configured for the chosen fleet
 
-### 3. Launch a Swarm (Multi-Bot)
-Spawns multiple ground robots (default is 3) in a swarm configuration with random valid positions.
-```bash
-ros2 launch swarm swarm_bot.launch.py
-```
+### Teleop Controls
+
+`swarm_teleop` is launched automatically. Controls are context-aware — they adapt to whether the active agent is a ground bot or a drone.
+
+| Key | Ground Bot | Drone |
+|-----|-----------|-------|
+| `1`–`9` | Switch active agent | Switch active agent |
+| `W` / `S` | Forward / Backward | Forward / Backward |
+| `A` / `D` | Rotate Left / Right | Yaw Left / Right |
+| `↑` / `↓` | Forward / Backward | Ascend / Descend |
+| `←` / `→` | Rotate Left / Right | Strafe Left / Right |
+| `SPACE` | Stop active agent | Hover |
+| `0` | **Emergency stop ALL** | **Emergency stop ALL** |
+| `X` | Quit | Quit |
 
 ## Project Structure
 
-- **launch/**: Contains Python launch files for different robot configurations as mentioned above.
-- **model/**: Robot description files, which have been made modular based on each aspect of the bot.
-- **world/**: Gazebo world files (SDF), currently only an empty world, actively adding obstacles and relevant features.
-- **parameters/**: Configuration files (e.g., bridge parameters).
-- **meshes/**: 3D models for robots, primarily STL files imported from Fuel.
+```
+swarm_project/
+└── src/swarm/
+    ├── launch/
+    │   └── swarm.launch.py       # Unified launch — all robot types & counts
+    ├── model/                    # Modular robot description files (xacro)
+    │   ├── robot.xacro           # Ground bot top-level
+    │   ├── robot_drone.xacro     # Drone top-level
+    │   ├── ground_bot.xacro      # Ground bot body
+    │   ├── drone.xacro           # Drone body
+    │   ├── ground_bot.gazebo     # Ground bot Gazebo plugins
+    │   ├── drone.gazebo          # Drone Gazebo plugins
+    │   ├── cameras.xacro         # Camera sensor macro
+    │   ├── lidar.xacro           # LiDAR sensor macro
+    │   ├── wheels.xacro          # Wheel geometry macro
+    │   └── propellers.xacro      # Propeller geometry macro
+    ├── swarm/
+    │   └── swarm_teleop.py       # Unified teleop — ground bots + drones
+    ├── world/                    # Gazebo world SDF files
+    └── meshes/                   # 3D mesh assets (STL)
+```
 
-
+> **Note on `parameters/`:** Bridge parameters are now generated dynamically at launch time from `swarm.launch.py` and written to a temporary file. The static `bridge_params.yaml` has been removed.
