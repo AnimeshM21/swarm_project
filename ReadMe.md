@@ -71,6 +71,8 @@ The launch file automatically:
 - Generates and applies the correct ROS ↔ Gazebo bridge configuration
 - Starts the `swarm_teleop` node
 
+![heterogenous_swarm](./images/heterogenous_swarm.png)
+
 ### Teleop Controls
 
 Although `swarm_teleop` is launched as part of the launch process, it is best interacted with in a **separate terminal** to capture keyboard inputs properly. 
