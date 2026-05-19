@@ -266,7 +266,9 @@ def _launch_setup(context, *args, **kwargs):
         parameters=[{
             'num_bots':   num_bots,
             'num_drones': num_drones,
-            'use_sim_time': True,
+            # Teleop runs on wall clock — must NOT be gated on /clock so that
+            # keyboard commands work even when the simulation is paused.
+            'use_sim_time': False,
         }],
     ))
 
