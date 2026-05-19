@@ -34,8 +34,6 @@ setup(
 
         # Subfolders inside world/
         ('share/' + package_name + '/world/ground', package_files('world/ground')),
-        # Parameters
-        ('share/' + package_name + '/parameters', ['parameters/bridge_params.yaml']),
 
     ],
     install_requires=['setuptools'],
@@ -46,8 +44,7 @@ setup(
     license='Apache-2.0',
     entry_points={
         'console_scripts': [
-             'bot_teleop = swarm.bot_teleop:main',
-             'drone_teleop = swarm.drone_teleop:main',
+             'swarm_teleop = swarm.swarm_teleop:main',
         ],
     },
 )
