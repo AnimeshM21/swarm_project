@@ -12,6 +12,8 @@
   <xacro:ground_bot suffix="$(arg frame_prefix)"/>
   <xacro:wheels suffix="$(arg frame_prefix)"/>
   
+  <!-- Sensors disabled: ogre2 render engine blocks physics on Intel iGPU.
+       Re-enable lidar + depth_camera when a dedicated GPU is available.
   <xacro:lidar 
     name="lidar" 
     parent="$(arg frame_prefix)ground_bot_frame" 
@@ -25,6 +27,7 @@
     xyz="0.424 0 0.5"
     rpy="0 0 0"
     suffix="$(arg frame_prefix)"/>
+  -->
 
   <!-- Load ground-bot Gazebo plugins (IMU, Sensors, DiffDrive) -->
   <xacro:ground_bot_gazebo suffix="$(arg frame_prefix)"/>

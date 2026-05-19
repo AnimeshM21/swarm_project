@@ -210,7 +210,7 @@ def _launch_setup(context, *args, **kwargs):
                     '-topic', 'robot_description',
                     '-x', str(pos[0]),
                     '-y', str(pos[1]),
-                    '-z', '0.1',
+                    '-z', '0.3',
                 ],
             ),
         ]))
