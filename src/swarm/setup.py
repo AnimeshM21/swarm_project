@@ -45,6 +45,7 @@ setup(
     entry_points={
         'console_scripts': [
              'swarm_teleop = swarm.swarm_teleop:main',
+             'bag_to_sqlite = swarm.bag_to_sqlite:main',
         ],
     },
 )
