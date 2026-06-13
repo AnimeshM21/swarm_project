@@ -97,11 +97,57 @@ Controls are context-aware — they adapt to whether the active agent is a groun
 | `0` | **Emergency stop ALL** | **Emergency stop ALL** |
 | `X` | Quit | Quit |
 
+## Data Recording & Analysis
+
+ROS 2 bags are used as the record of truth — they capture every topic published during a run, including things you didn't know you'd need later.
+
+### Record a Run
+
+While the simulation is running, open a separate terminal and record:
+
+```bash
+# Record all topics
+ros2 bag record -a -o ~/my_swarm_run
+
+# Or record only the topics you care about
+ros2 bag record /bot_1/odom /bot_2/odom /bot_3/odom \
+                /bot_1/cmd_vel /bot_2/cmd_vel /bot_3/cmd_vel \
+                -o ~/my_swarm_run
+```
+
+Press `Ctrl+C` to stop recording.
+
+### Convert to SQLite
+
+After recording, convert the bag to a SQLite database for easy analysis:
+
+```bash
+python3 ~/Desktop/swarm_project/src/swarm/swarm/bag_to_sqlite.py ~/my_swarm_run/
+# Output: ~/my_swarm_run.db
+```
+
+Or after `colcon build` and sourcing:
+
+```bash
+bag_to_sqlite ~/my_swarm_run/
+```
+
+Each topic becomes its own table. Every row has `timestamp_ns` and `timestamp_s` columns. Message fields are flattened into typed columns:
+
+| Topic pattern | Table | Key columns |
+|---|---|---|
+| `/bot_N/odom` | `bot_N__odom` | `pose_x/y/z`, `vel_lin_x/y/z` |
+| `/bot_N/cmd_vel` | `bot_N__cmd_vel` | `linear_x`, `angular_z` |
+| `/bot_N/imu` | `bot_N__imu` | `ori_x/y/z/w`, `lin_acc_x/y/z` |
+| `/drone[_N]/cmd_vel` | `drone[_N]__cmd_vel` | `linear_x/y/z`, `angular_z` |
+| `/clock` | `clock` | `clock_sec`, `clock_nanosec` |
+
 ## Project Structure
 
 - **launch/**: Contains the unified Python launch file.
 - **model/**: Robot description files (XACRO/SDF), made modular based on each aspect of the bot.
 - **world/**: Gazebo world files (SDF), including the `swarm_world.sdf` layout.
 - **meshes/**: 3D models for robots, primarily STL files.
+- **swarm/bag_to_sqlite.py**: Post-processing script — converts a ROS 2 bag to a SQLite database for analysis.
 
 > **Note on Sensors:** Due to heavy rendering requirements of multiple lidar/depth-cameras with Ogre2 on integrated graphics, sensor system plugins are disabled by default in `swarm_world.sdf` and `robot.xacro` to guarantee high simulation performance/stability. They can be re-enabled by uncommenting the plugin blocks.
